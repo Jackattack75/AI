@@ -3,4 +3,25 @@
 # program: password Generator
 # resource: https://www.youtube.com/watch?v=jRAAaDll34Q
 
-print("AI")
+import hashlib
+import os
+
+def hash_password(password, salt):
+    # Combine the password and salt and hash them using SHA-256
+    hashed_password = hashlib.sha256((password + salt).encode()).hexdigest()
+    return hashed_password
+def main():
+    # Prompt the user to enter a password
+    password = input("Enter your password: ")
+
+    # Generate a random salt
+    salt = os.urandom(32).hex()
+
+    # Hash the password using the salt
+    hashed_password = hash_password(password, salt)
+
+    # Print the hashed password
+    print("Hashed Password:", hashed_password)
+
+if __name__ == "__main__":
+    main()
